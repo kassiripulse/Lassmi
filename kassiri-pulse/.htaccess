@@ -1,0 +1,95 @@
+# ====================================================================
+# CONFIGURATION APACHE & RE-WRITING SEO – KASSIRI PULSE
+# ====================================================================
+
+# Empêcher le listage des répertoires pour des raisons de sécurité
+Options -Indexes
+
+# Définir l'encodage par défaut
+AddDefaultCharset UTF-8
+
+# Politique de protection de l'accès aux fichiers sensibles
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<Files "database.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "kassiri_pulse.sql">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Activer le moteur de réécriture
+RewriteEngine On
+
+# Forcer le HTTPS si disponible (décommenter sur Hostinger Premium)
+# RewriteCond % {HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Base de réécriture si le projet est dans un sous-dossier ou à la racine
+# RewriteBase /kassiri-pulse/
+
+# RÈGLES DE RÉÉCRITURE DES URLS PROPURES (SEO)
+# -----------------------------------------------
+
+# Accueil propre
+RewriteRule ^accueil$ index.php [L,QSA]
+
+# Page événement spécifique (exemple : evenement/siao-2026)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^evenement/([a-zA-Z0-9_-]+)$ pages/evenement.php?slug=$1 [L,QSA]
+
+# Catégorie d'événements (exemple : categorie/musique)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^categorie/([a-zA-Z0-9_-]+)$ pages/categorie.php?slug=$1 [L,QSA]
+
+# Artiste culturel (exemple : artiste/alif-naaba)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^artiste/([a-zA-Z0-9_-]+)$ pages/artiste.php?slug=$1 [L,QSA]
+
+# Billetterie générale
+RewriteRule ^billetterie$ pages/billetterie.php [L,QSA]
+
+# Agenda culturel
+RewriteRule ^agenda$ pages/agenda.php [L,QSA]
+
+# Carte interactive
+RewriteRule ^carte$ pages/carte.php [L,QSA]
+
+# Galerie d'images
+RewriteRule ^galerie$ pages/galerie.php [L,QSA]
+
+# Recherche globale
+RewriteRule ^recherche$ pages/recherche.php [L,QSA]
+
+# Podcasts culturels
+RewriteRule ^podcasts$ pages/podcast.php [L,QSA]
+RewriteRule ^podcasts/([a-zA-Z0-9_-]+)$ pages/podcast.php?slug=$1 [L,QSA]
+
+# Radio simulée
+RewriteRule ^radio$ pages/radio.php [L,QSA]
+
+# Formulaire contact
+RewriteRule ^contact$ pages/contact.php [L,QSA]
+
+# Espaces d'administration
+RewriteRule ^admin/connexion$ admin/login.php [L,QSA]
+RewriteRule ^admin/statistiques$ admin/dashboard.php [L,QSA]
+RewriteRule ^admin/gestion-evenements$ admin/evenements.php [L,QSA]
+RewriteRule ^admin/gestion-artistes$ admin/artistes.php [L,QSA]
+RewriteRule ^admin/gestion-billets$ admin/billets.php [L,QSA]
+RewriteRule ^admin/gestion-podcasts$ admin/podcasts.php [L,QSA]
+RewriteRule ^admin/gestion-commentaires$ admin/commentaires.php [L,QSA]
+RewriteRule ^admin/gestion-newsletter$ admin/newsletter.php [L,QSA]
+RewriteRule ^admin/ajouter-evenement$ admin/ajouter_evenement.php [L,QSA]
+
+# Sitemaps
+RewriteRule ^sitemap.xml$ sitemap.xml [L]

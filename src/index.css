@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Source Serif 4", ui-serif, Georgia, serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-red: #C0392B;
+  --color-brand-green: #1A6B3C;
+  --color-brand-gold: #D4A017;
+  --color-brand-cream: #FAF5E9;
+  --color-brand-charcoal: #1A1A1A;
+}
+
+@layer utilities {
+  /* Pattern Bogolan et ethnique */
+  .bg-bogolan {
+    background-color: var(--color-brand-cream);
+    background-image: 
+      radial-gradient(circle at 100% 150%, var(--color-brand-charcoal) 24%, var(--color-brand-gold) 24%, var(--color-brand-gold) 28%, transparent 28%, transparent),
+      radial-gradient(circle at 0% 150%, var(--color-brand-charcoal) 24%, var(--color-brand-gold) 24%, var(--color-brand-gold) 28%, transparent 28%, transparent),
+      linear-gradient(to right, var(--color-brand-charcoal) 2px, transparent 2px),
+      linear-gradient(to bottom, var(--color-brand-charcoal) 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-opacity: 0.05;
+  }
+  
+  .bg-bogolan-pattern {
+    background-color: #1A1A1A;
+    background-image: radial-gradient(rgba(212, 160, 23, 0.15) 1px, transparent 0),
+                      radial-gradient(rgba(192, 57, 43, 0.15) 1px, transparent 0);
+    background-size: 24px 24px;
+    background-position: 0 0, 12px 12px;
+  }
+
+  .border-bogolan {
+    border-style: solid;
+    border-width: 8px;
+    border-image: repeating-linear-gradient(45deg, #1A6B3C, #1A6B3C 10px, #D4A017 10px, #D4A017 20px, #C0392B 20px, #C0392B 30px, #1A1A1A 30px, #1A1A1A 40px) 20;
+  }
+
+  .border-bogolan-subtle {
+    border-style: solid;
+    border-width: 4px;
+    border-image: repeating-linear-gradient(45deg, #FAF5E9, #FAF5E9 10px, #D4A017 10px, #D4A017 20px) 15;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF5E9;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4A017;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C0392B;
+}
+
+/* Custom styles for animations */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.font-playfair {
+  font-family: "Playfair Display", serif;
+}
+
+.font-source {
+  font-family: "Source Serif 4", serif;
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Kassiri Pulse",
+  "description": "Portail culturel premium du Burkina Faso — Agenda, billetterie, cartes interactives, podcasts, radio et espace d'administration.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
